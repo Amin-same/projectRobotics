@@ -9,20 +9,35 @@ clc; clear all; close all;
 disp('Kinetics 01: Car');
 
 %% Kinetic Model - Car Steering Wheels
+%% Start position [1,0] to [1,1]
 kinematicModel = ackermannKinematics;
 initialState = [1 0 pi/2 0];   % Start xy-position, orientation, and steering angle,
                             % ... specified as [x y theta psi], in meters and radians.
 
 % Simulate Robot Motion
 tspan = 0:1;       % Zeitvektor
-cmds = [1 0.5];          % 1m/s velocity and left turn
+cmds = [1 -0.2];          % 1m/s velocity and left turn
 [t,y] = ode45(@(t,y)derivative(kinematicModel,y,cmds),tspan,initialState);
-
-
- initialState2 = [y(end,1) y(end,2) y(end,3) y(end,4)];
-tspan = 0:1;       % Zeitvektor
-cmds2 = [1 0];          % 1m/s velocity and left turn
-[t2,y2] = ode45(@(t2,y2)derivative(kinematicModel,y2,cmds2),tspan2,initialState2);
-
 figure(1); plot(y(:,1),y(:,2)); grid on; axis equal;hold on;
-figure(1); plot(y2(:,1),y2(:,2)); grid on; axis equal; hold off;
+
+%% 2nd position [1,1] to [1.5,2]
+initialState = [y(end,1) y(end,2) y(end,3) -.7];
+tspan = 0:1;       % Zeitvektor
+cmds = [1.1 .6];          % 1m/s velocity and left turn
+[t,y] = ode45(@(t,y)derivative(kinematicModel,y,cmds),tspan,initialState);
+plot(y(:,1),y(:,2)); grid on; axis equal;
+
+%% 3rd position [1.5,2] to [3,2]
+initialState = [y(end,1) y(end,2) y(end,3) .1];
+tspan = 0:1;       % Zeitvektor
+cmds = [1.1 .1];          % 1m/s velocity and left turn
+[t,y] = ode45(@(t,y)derivative(kinematicModel,y,cmds),tspan,initialState);
+plot(y(:,1),y(:,2)); grid on; axis equal;
+
+%% 4th position [3,2] to [4,3]
+initialState = [y(end,1) y(end,2) y(end,3) -.4];
+tspan = 0:1;       % Zeitvektor
+cmds = [1.2 -.3];          % 1m/s velocity and left turn
+[t,y] = ode45(@(t,y)derivative(kinematicModel,y,cmds),tspan,initialState);
+plot(y(:,1),y(:,2)); grid on; axis equal;
+
