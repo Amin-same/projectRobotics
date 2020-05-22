@@ -44,14 +44,14 @@ figure(2);
     legend('Reference laser scan','Transformed current laser scan','Location','NorthWest');
 
 % Build Occupancy Grid Map Using Iterative Scan Matching
-map = occupancyMap(13,13,30);
-map.GridLocationInWorld = [0 0];
+map = occupancyMap(18,18,20);
+map.GridLocationInWorld = [-5 -10];
 
 % Pre-allocate an array to capture the absolute movement of the robot.
 % Initialize the first pose as [0 0 0]. All other poses are relative to the first measured scan. 
 numScans = numel(lidarScans);
 % initialPose = [pi/2 0 0];
-poseList = eulerAngles+pi/2;%zeros(numScans,3);
+poseList = eulerAngles-pi/8;%zeros(numScans,3);
 % poseList(1,:) = initialPose;
 % transform = initialPose;
 
