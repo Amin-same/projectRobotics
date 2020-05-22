@@ -3,8 +3,6 @@
 %  Map 03.) Roboter-Pose Scan-Matching
 %  A. Same     22.05.2020
 %  =========================
-% https://de.mathworks.com/help/nav/ug/estimate-robot-pose-with-scan-matching.html
-
 
 %% %%%%%IMPORTANT%%%%%IMPORTANT%%%%%%IMPORTANT%%%%%IMPORTANT%%%%%%IMPORTANT%%%%% IMPORTANT %%
 %                                                                                          %%

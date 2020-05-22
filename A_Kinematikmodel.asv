@@ -1,0 +1,28 @@
+%% Kinematik Objekt
+
+%  =========================
+%  Kinet 01.) Car Modell
+%  A. Same     27.04.2020
+%  =========================
+
+clc; clear all; close all;
+disp('Kinetics 01: Car');
+
+%% Kinetic Model - Car Steering Wheels
+kinematicModel = ackermannKinematics;
+initialState = [1 0 pi/2 0];   % Start xy-position, orientation, and steering angle,
+                            % ... specified as [x y theta psi], in meters and radians.
+
+% Simulate Robot Motion
+tspan = 0:1;       % Zeitvektor
+cmds = [1 0.5];          % 1m/s velocity and left turn
+[t,y] = ode45(@(t,y)derivative(kinematicModel,y,cmds),tspan,initialState);
+
+
+ initialState2 = [y(end,1) y(end,2) y(end,3) y(end,4)];
+tspan = 0:1;       % Zeitvektor
+cmds2 = [1 0];          % 1m/s velocity and left turn
+[t2,y2] = ode45(@(t2,y2)derivative(kinematicModel,y2,cmds2),tspan2,initialState2);
+
+figure(1); plot(y(:,1),y(:,2)); grid on; axis equal;hold on;
+figure(1); plot(y2(:,1),y2(:,2)); grid on; axis equal; hold off;

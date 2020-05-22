@@ -15,6 +15,6 @@ prm.ConnectionDistance = 5;
 % Find a Feasible Path on the Constructed PRM
 startLocation = [1 0];
 endLocation = [8 8];
-path = findpath(prm, startLocation, endLocation)
+path = findpath(prm, startLocation, endLocation);
 
 figure(3);  show(prm); grid on
