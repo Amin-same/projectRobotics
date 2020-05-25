@@ -1,3 +1,9 @@
+%% Pfad finden
+%  =========================
+%  Map 03.) Roboter-Pose Scan-Matching
+%  A. Same     22.05.2020
+%  =========================
+
 clear all; close all;
 
 MyMap = double(imread('MyMap.png'));

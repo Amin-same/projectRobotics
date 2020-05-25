@@ -1,4 +1,4 @@
-%% Mobile Robotik Simulation 
+%% Mapping
 %  =========================
 %  Map 03.) Roboter-Pose Scan-Matching
 %  A. Same     22.05.2020
@@ -17,7 +17,7 @@ disp('Map 03: Roboter-Pose Scan-Matching');
 %% Loading lidar sensor data,collected from ""B_C_D_Karten_Trajektorie_Lidar.m" file
 load('B_C_D_Karten_Trajektorie_Lidar.mat')
 load('eulerAngles')
-lidarScans = MyLidaScan;
+lidarScans = MyLidarScan;
 
 %% Estimate Robot Pose with Scan Matching
 referenceScan = lidarScans(1);
@@ -30,6 +30,7 @@ figure(1);
     plot(refScanCart(:,1),refScanCart(:,2),'k.'); hold on
     plot(currScanCart(:,1),currScanCart(:,2),'r.');
     legend('Reference laser scan','Current laser scan','Location','NorthWest');
+    title('Scanned data before matching') 
 
 %% Run Scan Matching Algorithm and Display Transformed Scan
 transform = matchScans(currentScan,referenceScan);
@@ -40,6 +41,7 @@ figure(2);
     transScanCart = transScan.Cartesian;
     plot(transScanCart(:,1),transScanCart(:,2),'r.');
     legend('Reference laser scan','Transformed current laser scan','Location','NorthWest');
+    title('Scanned data after matching') 
 
 % Build Occupancy Grid Map Using Iterative Scan Matching
 map = occupancyMap(13,13,30);
@@ -84,7 +86,6 @@ for idx = 2:numScans
     % Integrate the current laser scan into the probabilistic occupancy
     % grid.
     insertRay(map,absolutePose,currentScan,10);
-
 end
 
 % Visualize Map
